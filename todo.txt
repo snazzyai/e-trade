@@ -1,0 +1,1 @@
+This is a todo for the tasks to accomplish building e-trade's backends 
