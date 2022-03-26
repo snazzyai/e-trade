@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Iphone 13 pro max",
+    "description": "A 2 year old Iphone 13 pro max for sale urgently",
+    "image": "https://photos.app.goo.gl/n8CWGPcdYJrUgbGv5",
+    "price": 500,
+    "location": {
+      "address": "44, Fabrikzeile",
+      "city": "Hof",
+      "postcode": "95028",
+      "country": "Germany"
+    },
+    "views": 30,
+    "category": ["Electronics", "Mobile Phones"]
+
+  },
+  {
+    "name": "Nike Air Jordan",
+    "description": "New Nike Air jordan",
+    "price": 200,
+    "location": {
+      "address": "45, Theresienstrasse",
+      "city": "Neckersulm",
+      "postcode": "88939",
+      "country": "Germany"
+    },
+    "views": 10,
+    "category": ["Shoes"]
+  }
+]
