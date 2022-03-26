@@ -1,1 +1,50 @@
-This is a todo for the tasks to accomplish building e-trade's backends 
+This is a todo for the tasks to accomplish building e-trade's backends
+
+//TODO
+Create listing api for user
+Listing API ->
+Product Id -> string
+Product Name -> string
+Product Picture -> string or string[]
+Product Price -> number
+Product Location -> {
+    Postcode -> string
+    City -> string
+}
+Post date -> string
+Product Views -> number
+Product Category -> string
+Product Description -> string
+Product Provider -> User
+createdAt -> string
+updatedAt -> string
+
+User ->
+id -> string
+Firstname -> string
+Lastname -> string
+createdAt -> string
+type -> "1" or "2" //user or admin
+email -> string
+phone -> string
+location -> {
+    postcode -> string
+    city -> string
+}
+incomingMessages -> [
+    {
+        FirstName -> string
+        message -> string
+    }
+]
+outgoingMessages -> [
+    {
+        FirstName -> string
+        message -> string
+    }
+]
+
+// Tasks
+1.  Create Model for Listing
+2. Ensure the listing model works
+3. Create a crud functionality and also error boundaries for the listings
