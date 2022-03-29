@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import slugify from "slugify";
 
 let ListingSchema = new mongoose.Schema({
     name: {
@@ -7,6 +8,7 @@ let ListingSchema = new mongoose.Schema({
         unique: true,
         maxLength: [100, 'Max length exceeded']
     },
+    slug: String,
     description: {
         type: String,
         required: true,
@@ -51,7 +53,7 @@ let ListingSchema = new mongoose.Schema({
             'Gaming',
             'Electronics',
             'Mobile Phones',
-            'Auto mobile',
+            'Automobile',
             'Others'
         ]
     },
@@ -63,6 +65,12 @@ let ListingSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
+})
+
+//create slug
+ListingSchema.pre('save',  function (next) {
+    this.slug = slugify(this.name, { lower: true })
+    next()
 })
 
 export default mongoose.model('Listing', ListingSchema)
