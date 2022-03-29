@@ -44,7 +44,24 @@ outgoingMessages -> [
     }
 ]
 
+
+//status
+200 -> Okay
+400 -> from client bad request
+404 -> not found
+401 -> could not create
+
+500 -> server error
+
 // Tasks
 1.  Create Model for Listing
 2. Ensure the listing model works
 3. Create a crud functionality and also error boundaries for the listings
+4. Create a filtering (lt,gt,gte,lte,in) & searching query strings
+5. Select a field from api and sort
+6. Add pagination
+7. Create User model and integrate with listing
+
+//pages that need sorted api
+the listing page [ name, image, price , category, location.city ]
+user listings page
