@@ -1,32 +1,30 @@
+import jwt from 'jsonwebtoken'
+import User from "../models/User.mjs";
+import asyncHandler from "./async.mjs";
 import ErrorResponse from "../utils/errorResponse.mjs";
 
-const errorHandler = (err, req, res, next) => {
+const authGuard = asyncHandler( async (req, res, next) => {
+    let token;
 
-
-    let error = { ...err }
-
-    // Mongoose Listing Errors
-    // duplicate key error
-    if (error.code === 11000){
-        const message = `Duplicate key found with id of ${error.value}`
-        error = new ErrorResponse(message, 400 )
+    //checks if header contains bearer
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+        token = req.headers.authorization.split(' ')[1]
     }
-    // casting error
-    if (error.name === 'CastError'){
-        const message = `Error finding listing with id of ${error.value}`
-        error = new ErrorResponse(message, 404)
+    // else if(req.cookies){
+    //     token = req.cookies.token
+    // }
+    if(!token){
+        return next(new ErrorResponse("No authorization to access route", 401))
     }
-
-    //validation error
-    //need to make it work
-    if(error.name === 'ValidationError'){
-        const message = Object.values(err.errors).map(val => val.message)
-        error = new ErrorResponse(message, 400)
+    try{
+        //verify token
+        const decoded =  jwt.verify(token, process.env.JWT_SECRET)
+        req.user = await User.findById(decoded?.id)
+        next()
+    }catch(err){
+        return next(new ErrorResponse("No authorization to access route", 401))
     }
 
+})
 
-    return res.status(err.statusCode || 500).json({ success: false, error: err.message || 'Server error'})
-
-}
-
-export default errorHandler
+export default authGuard
