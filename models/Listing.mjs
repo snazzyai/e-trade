@@ -25,7 +25,6 @@ let ListingSchema = new mongoose.Schema({
     location: {
         address: {
             type: String,
-            required: true,
             maxLength: [50, 'Max length of address exceeded']
         },
         city: {
