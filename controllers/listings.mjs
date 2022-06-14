@@ -1,6 +1,6 @@
 import Listing from "../models/Listing.mjs";
 import ErrorResponse from "../utils/errorResponse.mjs";
-import asyncHandler from "../middlewares/async.js";
+import asyncHandler from "../middlewares/async.mjs";
 
 /*
     @desc Get all listings
@@ -37,9 +37,9 @@ export const getListings = asyncHandler(async (req, res, next) => {
 
         //pagination
         const page = parseInt(req.query.page, 10) || 1
-        const limit = parseInt(req.query.limit, 10) || 1
+        const limit = parseInt(req.query.limit, 10) || 10
 
-        //skip documents e.g page 2 will skip the first 1 documents(limit)
+        //skip documents e.g page 2 will skip the first 1 or 10 documents(limit)
         const startIndex = (page - 1) * limit
         const endIndex = page * limit
         const totalDocuments = await Listing.countDocuments()
